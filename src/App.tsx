@@ -1,50 +1,96 @@
+import { createRef } from "react";
 import styled from "@emotion/styled";
+import { TypeAnimation } from "react-type-animation";
 
 import Davyd from "./assets/images/Davyd.svg";
 import Team from "./assets/images/Team.svg";
+import { breakpoints } from "./variables";
 
 import "./App.css";
-import { breakpoints } from "./variables";
+
+const Typed = ({ text, style }: { text: string; style?: any }) => {
+  const ref = createRef<HTMLSpanElement>();
+  const CURSOR_CLASS_NAME = "animation-cursor";
+
+  const showCursorAnimation = (show: boolean) => {
+    if (!ref.current) {
+      return;
+    }
+
+    const el = ref.current;
+    if (show) {
+      el.classList.add(CURSOR_CLASS_NAME);
+    } else {
+      el.classList.remove(CURSOR_CLASS_NAME);
+    }
+  };
+
+  return (
+    <TypeAnimation
+      ref={ref}
+      cursor={false}
+      className={CURSOR_CLASS_NAME}
+      speed={70}
+      style={style}
+      sequence={[text, 1000, () => showCursorAnimation(false)]}
+      omitDeletionAnimation
+    />
+  );
+};
 
 function App() {
   return (
     <Page>
-      <CommingSoon>SITE COMMING SOON</CommingSoon>
+      <CommingSoon>
+        <Typed text="SITE COMMING SOON" />
+      </CommingSoon>
 
       <SocialsPhone>
-        <li>Contact</li>
+        <li>
+          <Typed text="Contact" />
+        </li>
         <li>
           <a href="https://www.instagram.com/davyd_team/?igshid=OGQ5ZDc2ODk2ZA">
-            INSTAGRAM
+            <Typed text="INSTAGRAM" />
           </a>
         </li>
         <li>
-          <a href="https://www.behance.net/davyd_team">Behance</a>
+          <a href="https://www.behance.net/davyd_team">
+            <Typed text="Behance" />
+          </a>
         </li>
       </SocialsPhone>
 
       <SocialsDesktop>
         <li>
           <a href="https://www.instagram.com/davyd_team/?igshid=OGQ5ZDc2ODk2ZA">
-            INST
+            <Typed text="INST" />
           </a>
         </li>
         <li>
-          <a href="https://www.behance.net/davyd_team">BE</a>
+          <a href="https://www.behance.net/davyd_team">
+            <Typed text="BE" />
+          </a>
         </li>
       </SocialsDesktop>
 
       <ServicesList>
-        <li>Services</li>
-        <li>Branding</li>
-        <li>Brand strategy</li>
-        <li>Naming</li>
-        <li>Creative & Art direction</li>
-        <LiWithIndent>Packaging</LiWithIndent>
-        <li>Digital & WEB design</li>
-        <li>Photography</li>
-        <li>Content creation</li>
-        <li>Social Media Management</li>
+        {[
+          "Services",
+          "Branding",
+          "Brand strategy",
+          "Naming",
+          "Creative   &   Art direction",
+          " Packaging",
+          "Digital & WEB design",
+          "Photography",
+          "Content creation",
+          "Social Media Management",
+        ].map((text) => (
+          <li>
+            <Typed text={text} />
+          </li>
+        ))}
       </ServicesList>
 
       <Logo>
@@ -53,39 +99,42 @@ function App() {
       </Logo>
 
       <TextShort>
-        <p>Unique comprehensive</p>
-        <p>brand identity</p>
+        <Typed text="Unique comprehensive" />
+        <Typed text="BRAND IDENTITY" />
       </TextShort>
 
       <TextLongFirst>
-        We provide a holistic approach to the brand identity that captures the
-        main essence of the brand, its values, vision, and distinctive
-        qualities.
-        <span>
-          Revealing the brand idea which will be reflected throughout every
-          aspect and component of the brand recognition.
-        </span>
+        <Typed
+          text={`  We provide a holistic approach to the brand
+identity that captures the main essence of the
+brand, its values, vision, and distinctive
+qualities.       Revealing the brand idea which will
+be reflected throughout every aspect and component
+of the brand recognition.`}
+        />
       </TextLongFirst>
 
       <TextLongLast>
-        We strive to decently <span>package </span>
-        and lead a <span>visual narrative</span> of the client's story, where
-        minimalism, thoughtfulness and timelessness come first.
+        <Typed
+          text={`      We strive to decently PACKAGE
+and lead a VISUAL NARRATIVE of the
+client's story, where
+minimalism, thoughtfulness
+and timelessness come first.`}
+        />
       </TextLongLast>
 
       <TeamBased>
-        <p>Creative team.</p>
-        <p>Based in Lviv, Ukraine</p>
+        <Typed text="Creative team." />
+        <Typed text="Based in Lviv, Ukraine" />
       </TeamBased>
 
-      <Mail href="mailto:hellodavyd@gmail.com">hellodavyd@gmail.com</Mail>
+      <Mail href="mailto:hellodavyd@gmail.com">
+        <Typed text="hellodavyd@gmail.com" />
+      </Mail>
     </Page>
   );
 }
-
-const LiWithIndent = styled.li`
-  text-indent: 0.5rem;
-`;
 
 const Page = styled.div`
   height: 100%;
@@ -107,15 +156,15 @@ const Page = styled.div`
 
   @media (min-width: ${breakpoints.md}) {
     margin: 0;
-    grid-template-columns: repeat(4, auto);
-    grid-template-rows: 10% 25% 40% 5% 15% 5%;
+    grid-template-columns: 626px auto 290px 275px;
+    grid-template-rows: 10% 25% 36% 8% 15% 5%;
     grid-template-areas:
       "commingSoon commingSoon commingSoon commingSoon"
       ". . servicesList socialsDesktop"
       "logo logo logo logo"
       "textShort textShort . . "
       "textLongFirst textLongLast textLongLast ."
-      ". teamBased . mail";
+      ". teamBased teamBased mail";
   }
 `;
 
@@ -131,6 +180,9 @@ const CommingSoon = styled.p`
 
 const TeamBased = styled.div`
   grid-area: teamBased;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 `;
 
 const Logo = styled.div`
@@ -158,6 +210,9 @@ const Logo = styled.div`
 
 const ServicesList = styled.ul`
   grid-area: servicesList;
+  li > span {
+    white-space: pre;
+  }
   li:first-of-type {
     margin-bottom: 34px;
   }
@@ -199,15 +254,8 @@ const SocialsPhone = styled.nav`
 
 const TextShort = styled.div`
   grid-area: textShort;
-  p:last-of-type {
-    text-transform: uppercase;
-  }
-
-  margin-bottom: 37px;
-
-  @media (min-width: ${breakpoints.md}) {
-    margin-bottom: 0;
-  }
+  display: flex;
+  flex-direction: column;
 `;
 
 const TextLongFirst = styled.p`
@@ -217,11 +265,12 @@ const TextLongFirst = styled.p`
   margin-bottom: 79px;
 
   @media (min-width: ${breakpoints.md}) {
-    max-width: 30.5vw;
-    min-width: 527px;
     text-indent: 0;
     height: auto;
     margin-bottom: 0;
+    > span {
+      white-space: pre;
+    }
   }
 
   span {
@@ -239,16 +288,17 @@ const TextLongLast = styled.p`
     max-width: 20.7vw;
     min-width: 358px;
     text-indent: 0;
-    height: auto;
     margin-bottom: 0;
-  }
-  span {
-    text-transform: uppercase;
+    > span {
+      white-space: pre;
+    }
   }
 `;
 
 const Mail = styled.a`
   grid-area: mail;
+  align-self: end;
+  margin-left: 62px;
 `;
 
 export default App;
