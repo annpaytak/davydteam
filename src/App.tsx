@@ -118,9 +118,9 @@ of the brand recognition.`}
         <Typed
           text={`      We strive to decently PACKAGE
 and lead a VISUAL NARRATIVE of the
-client's story, where
-minimalism, thoughtfulness
-and timelessness come first.`}
+client's story, where minimalism,
+thoughtfulness and timelessness
+come first.`}
         />
       </TextLongLast>
 
@@ -156,15 +156,15 @@ const Page = styled.div`
 
   @media (min-width: ${breakpoints.md}) {
     margin: 0;
-    grid-template-columns: 626px auto 290px 275px;
-    grid-template-rows: 10% 25% 36% 8% 15% 5%;
+    grid-template-columns: 37% 31% 19.6% 12%;
+    grid-template-rows: 9.2% 28.6% 36% 7.4% 15.8% 3%;
     grid-template-areas:
       "commingSoon commingSoon commingSoon commingSoon"
       ". . servicesList socialsDesktop"
       "logo logo logo logo"
       "textShort textShort . . "
       "textLongFirst textLongLast textLongLast ."
-      ". teamBased teamBased mail";
+      ". teamBased mail mail";
   }
 `;
 
@@ -190,7 +190,7 @@ const Logo = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 12vh 0;
+  margin: 14.2vh 0;
 
   img {
     height: 1.05rem;
@@ -200,10 +200,10 @@ const Logo = styled.div`
     margin: 0;
 
     img:first-of-type {
-      margin-right: 30.4%;
+      margin-right: 32%;
     }
     img {
-      height: 1.75rem;
+      height: 1.72rem;
     }
   }
 `;
@@ -215,6 +215,9 @@ const ServicesList = styled.ul`
   }
   li:first-of-type {
     margin-bottom: 34px;
+    @media (min-width: ${breakpoints.md}) {
+      margin-bottom: 24px;
+    }
   }
 `;
 
@@ -226,10 +229,7 @@ const SocialsDesktop = styled.nav`
     display: flex;
 
     li:first-of-type {
-      margin-right: 23px;
-    }
-    li:last-of-type {
-      margin-left: 23px;
+      margin-right: 10px;
     }
   }
 `;
@@ -262,7 +262,7 @@ const TextLongFirst = styled.p`
   grid-area: textLongFirst;
   text-indent: 3rem;
   height: 220px;
-  margin-bottom: 79px;
+  margin-bottom: 78px;
 
   @media (min-width: ${breakpoints.md}) {
     text-indent: 0;
@@ -282,9 +282,11 @@ const TextLongLast = styled.p`
   grid-area: textLongLast;
   text-indent: 3rem;
   height: 122px;
+  margin-top: 38px;
   margin-bottom: 15px;
 
   @media (min-width: ${breakpoints.md}) {
+    margin-top: 0;
     max-width: 20.7vw;
     min-width: 358px;
     text-indent: 0;
@@ -298,7 +300,11 @@ const TextLongLast = styled.p`
 const Mail = styled.a`
   grid-area: mail;
   align-self: end;
-  margin-left: 62px;
+  justify-self: center;
+
+  @media (min-width: ${breakpoints.md}) {
+    justify-self: flex-end;
+  }
 `;
 
 export default App;
