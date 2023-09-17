@@ -50,12 +50,15 @@ function App() {
           <Typed text="Contact" />
         </li>
         <li>
-          <a href="https://www.instagram.com/davyd_team/?igshid=OGQ5ZDc2ODk2ZA">
+          <a
+            href="https://www.instagram.com/davyd_team/?igshid=OGQ5ZDc2ODk2ZA"
+            target="_blank"
+          >
             <Typed text="INSTAGRAM" />
           </a>
         </li>
         <li>
-          <a href="https://www.behance.net/davyd_team">
+          <a href="https://www.behance.net/davyd_team" target="_blank">
             <Typed text="Behance" />
           </a>
         </li>
@@ -63,12 +66,15 @@ function App() {
 
       <SocialsDesktop>
         <li>
-          <a href="https://www.instagram.com/davyd_team/?igshid=OGQ5ZDc2ODk2ZA">
+          <a
+            href="https://www.instagram.com/davyd_team/?igshid=OGQ5ZDc2ODk2ZA"
+            target="_blank"
+          >
             <Typed text="INST" />
           </a>
         </li>
         <li>
-          <a href="https://www.behance.net/davyd_team">
+          <a href="https://www.behance.net/davyd_team" target="_blank">
             <Typed text="BE" />
           </a>
         </li>
