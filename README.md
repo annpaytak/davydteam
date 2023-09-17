@@ -8,5 +8,8 @@ commit changes `git commit -m"..."`
 
 push changes to gh-pages branch `git subtree push --prefix dist origin gh-pages`
 
-`git checkout -b gh-pages`
-`git checkout main`
+//? how to push to existing branch after once deployed
+
+delete branch from github
+
+`git branch gh-pages`
